@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BanglaXchange - Money Transfer Rate Comparison</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1a5f7a",
+              secondary: "#457b9d",
+              accent: "#e63946",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+      <!-- Header -->
+      <header class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-primary mb-2"><span style="color: #3fc380">B</span>angla<span style="color: #f22613">X</span>change</h1>
+        <p class="text-gray-600">Find the Best Remittance Rates & Save More to Bangladesh</p>
+      </header>
+
+      <!-- Main Form Section -->
+      <main class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <form id="exchangeForm" class="space-y-6">
+          <!-- Exchange House Selection -->
+          <div class="space-y-2">
+            <label for="exchangeHouse" class="block text-sm font-medium text-gray-700">Exchange House</label>
+            <select id="exchangeHouse" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" required>
+              <option value="">Select</option>
+              <option value="moneygram">MoneyGram</option>
+              <option value="remitly">Remitly</option>
+              <option value="taptapsend">Taptapsend</option>
+              <option value="wise">Wise</option>
+              <option value="elevatepay">Elevatepay</option>
+            </select>
+            <button type="button" id="addNewHouse" class="text-primary hover:text-secondary text-sm">+ Add New Exchange House</button>
+          </div>
+
+          <!-- Send and Receive Methods -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="space-y-2">
+              <label for="paymentMethod" class="block text-sm font-medium text-gray-700">Send Method</label>
+              <select id="paymentMethod" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" required>
+                <option value="">Select</option>
+                <option value="debit">Debit Card</option>
+                <option value="credit">Credit Card</option>
+                <option value="bank">Bank Transfer</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label for="serviceFeeInput" class="block text-sm font-medium text-gray-700">Service Fee ($)</label>
+              <input type="number" id="serviceFeeInput" step="0.01" value="0" min="0" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" required />
+            </div>
+            <div class="space-y-2">
+              <label for="receiveMethod" class="block text-sm font-medium text-gray-700">Receive Method</label>
+              <select id="receiveMethod" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" required>
+                <option value="">Select</option>
+                <option value="bank">Bank Transfer</option>
+                <option value="mobile">Mobile Wallet</option>
+                <option value="cash">Cash Pickup</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Exchange Rate and Amount -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="space-y-2">
+              <label for="exchangeRate" class="block text-sm font-medium text-gray-700">Exchange Rate (1 USD = X BDT)</label>
+              <input type="number" id="exchangeRate" step="0.01" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" required />
+            </div>
+            <div class="space-y-2">
+              <label for="sendAmount" class="block text-sm font-medium text-gray-700">Send Amount (USD)</label>
+              <input type="number" id="sendAmount" step="0.01" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" required />
+              <div id="receiveAmount" class="text-lg font-semibold text-primary">You'll Receive: ৳0</div>
+            </div>
+            <div class="space-y-2 flex items-center">
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input type="checkbox" id="incentiveCheckbox" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary" />
+                <span class="text-sm font-medium text-gray-700">Add 2.5% Incentive</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Dates -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="sendDate" class="block text-sm font-medium text-gray-700">Send Date</label>
+              <input type="date" id="sendDate" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" required />
+            </div>
+            <div>
+              <label for="receiveDate" class="block text-sm font-medium text-gray-700">Estimated Receive Date</label>
+              <input type="date" id="receiveDate" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" required />
+            </div>
+          </div>
+
+          <!-- Submit and Reset Buttons -->
+          <div class="flex justify-between items-center">
+            <button type="reset" class="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 transition-colors">Reset</button>
+            <button type="submit" class="bg-primary text-white px-6 py-2 rounded-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors">Save Transaction</button>
+          </div>
+        </form>
+      </main>
+
+      <!-- Transactions List -->
+      <section id="transactionsList" class="space-y-4">
+        <!-- Transactions will be dynamically added here -->
+      </section>
+    </div>
+
+    <!-- Add New Exchange House Modal -->
+    <div id="newHouseModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" role="dialog" aria-modal="true">
+      <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="mt-3">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">Add New Exchange House</h3>
+          <div class="space-y-4">
+            <input type="text" id="newHouseName" class="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Enter Exchange House Name" />
+            <div class="flex justify-end space-x-4">
+              <button id="cancelNewHouse" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Cancel</button>
+              <button id="saveNewHouse" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-secondary">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 text-gray-600">Built with ❤️ for the Bangladeshi community worldwide</footer>
+
+    <!-- Application Script -->
+    <script src="app.js"></script>
+  </body>
+</html>
