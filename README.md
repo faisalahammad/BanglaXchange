@@ -5,7 +5,7 @@ BanglaXchange is a modern, user-friendly remittance rate comparison tool designe
 ## Features
 
 - **Live Rate Comparison:** Instantly compare exchange rates and fees from providers like MoneyGram, Wise, Remitly, TapTapSend, and more.
-- **Bangladeshi Number Formatting:** All amounts are displayed in the Bangladeshi/Indian style for clarity (e.g., 2,81,875.00).
+- **Bangladeshi Number Formatting:** All amounts are displayed in the Bangladeshi style for clarity (e.g., 2,81,875.00).
 - **Transaction Management:** Save, edit, mark as complete, or delete your transfers. Completed transactions are visually highlighted.
 - **Modern UI/UX:** Built with TailwindCSS for a clean, responsive, and accessible experience. Includes color-coded buttons, icons, and confirmation dialogs.
 - **Incentive Handling:** Optionally add a 2.5% incentive to your receive amount.
